@@ -1,1 +1,0 @@
-print("Soy el hombre que superara a los Dioses.")
