@@ -23,3 +23,12 @@ source env/bin/activate
 pip3 install -r requirements.txt
 python3 grafica_poblacion_mundial.py
 ```
+# Web Server
+For running Web Server, Use these commands:
+```sh
+cd Web_Server
+python3 -m venv env
+source env/bin/activate
+pip3 install -r requirements.txt
+python3 main.py
+```
