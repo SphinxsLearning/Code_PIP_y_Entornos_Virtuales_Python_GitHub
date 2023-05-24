@@ -2,6 +2,7 @@
 
 import csv
 import matplotlib.pyplot as plt
+import pandas
 
 def run():
     list_continents = ["south america", "north america", "central america", "europe", "asia", "africa", "oceania"]
@@ -16,27 +17,33 @@ def run():
     Generar_Grafica_Pie(continent, list_labels, list_values)
 
 def get_list_countries_dict(path):
-    with open(path, "r") as countries_data:
+    df = pandas.read_csv(path)
+    return df
+    '''with open(path, "r") as countries_data:
         reader = csv.reader(countries_data, delimiter=",")
         header = next(reader)
         data_countries_list = []
         for row in reader:
             country_data_dict = {key:value for (key, value) in zip(header, row)}
             data_countries_list.append(country_data_dict)
-    return data_countries_list
+    return data_countries_list'''
 
 def get_labels(name_continent, list_countries_dict):
     list_labels = []
-    for country_dict in list_countries_dict:
+    list_countries_dict = list_countries_dict[list_countries_dict["Continent"] == name_continent]
+    list_labels = list_countries_dict["Country/Territory"].values
+    '''for country_dict in list_countries_dict:
         if country_dict["Continent"] == name_continent:
-            list_labels.append(country_dict["Country/Territory"])
+            list_labels.append(country_dict["Country/Territory"])'''
     return list_labels
 
 def get_values(name_continent, list_countries_dict):
     list_values = []
-    for country_dict in list_countries_dict:
+    list_countries_dict = list_countries_dict[list_countries_dict["Continent"] == name_continent]
+    list_values = list_countries_dict["World Population Percentage"].values
+    '''for country_dict in list_countries_dict:
         if country_dict["Continent"] == name_continent:
-            list_values.append(float(country_dict["World Population Percentage"]))
+            list_values.append(float(country_dict["World Population Percentage"]))'''
     return list_values
 
 def Generar_Grafica_Pie(name_continent, labels, values):
